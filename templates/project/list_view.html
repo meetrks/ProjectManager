@@ -1,0 +1,36 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<div class="">
+    <div class="">
+        <table border="1px solid black">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Task Count</th>
+                <th>Owner</th>
+                {% if perms.project.update_project %}
+                    <th>Action</th>
+                {% endif%}
+            </tr>
+            {% for resp in responses %}
+            <tr>
+                <td><a href="/project/{{ resp.pk }}/"> {{ resp.pk }} </a></td>
+                <td><a href="/project/{{ resp.pk }}/"> {{ resp.name }} </a></td>
+                <td>{{ resp.project.count}}</td>
+                <td>{{ resp.owner }}</td>
+                {% if perms.project.update_project %}
+                    <td><a href="/project/update/{{ resp.pk }}/">Edit</a> |
+                    <button onclick="delete_project('{{resp.pk}}')">Delete</button> </td>
+                {% endif%}
+            </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+    {% if perms.project.add_project %}
+        <div><a href="/project/create/">Add New Project</a> </div>
+    {% endif %}
+</div>
+<script src="/static/js/script.js"></script>
+{% endblock %}

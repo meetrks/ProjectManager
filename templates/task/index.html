@@ -1,0 +1,42 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<center class="">
+    <table>
+        <tr>
+            <th>ID</th><td>{{response.pk}}</td>
+        </tr>
+        <tr>
+            <th>Name</th><td>{{response.name}}</td>
+        </tr>
+        <tr>
+            <th>Description</th><td>{{response.description}}</td>
+        </tr>
+        <tr>
+            <th>Assignee</th>
+            <td>
+                {% if not perms.task.update_task %}
+                    {{response.assignee.username}}
+                {% else %}
+                    <select name="assignee_id" id="assignee" onchange="update_assignee('{{response.project_id}}', '{{response.pk}}')">
+                        {% for assignee in users %}
+                        {% if assignee.pk == response.assignee_id %}
+                        <option value="{{assignee.pk}}" selected>{{ assignee.username }}</option>
+                        {% else %}
+                        <option value="{{assignee.pk}}">{{ assignee.username }}</option>
+                        {% endif %}
+                        {% endfor %}
+                    </select>
+                {% endif %}
+            </td>
+        </tr>
+        <tr>
+            <th>Project Name</th><td>{{response.project.name}}</td>
+        </tr>
+    </table>
+
+</center>
+<script src="/static/js/script.js"></script>
+{% endblock %}
+
+

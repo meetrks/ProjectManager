@@ -1,0 +1,47 @@
+body{
+    margin: 0;
+    background: #eff0f1;
+}
+a, u {
+    text-decoration: none;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 5px;
+  padding-right: 0px;
+  height: 20px;
+}
+b{
+   padding-bottom: 10px;
+   padding-top: 10px;
+}
+input, textarea, select{
+    width: 80%;
+    height: 30px;
+}
+textarea{
+    height: 70px;
+}
+.header{
+    height: 50px;
+    background: #417690;
+}
+.home_btn{
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    padding: 14px 16px;
+    text-decoration: none;
+    margin-left: 10px;
+
+}
+.content{
+    padding: 20px;
+    background: #eff0f1;
+}

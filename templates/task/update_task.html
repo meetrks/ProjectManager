@@ -1,0 +1,42 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<div class="container">
+    <center class="content">
+        <table>
+            <tr>
+                <td>Name:</td>
+                <td><input type="text" name="name" id="name" required value="{{instance.name}}"></td>
+            </tr>
+            <tr>
+                <td>Description:</td>
+                <td><textarea rows="5" cols="20" id="description" name="description"
+                              required>{{instance.description}}</textarea></td>
+            </tr>
+            <tr>
+                <td>Assignee:</td>
+                <td>
+                    <select name="assignee_id" id="assignee">
+                        {% for assignee in users %}
+                        {% if assignee.pk == instance.assignee_id %}
+                        <option value="{{assignee.pk}}" selected>{{ assignee.username }}</option>
+                        {% else %}
+                        <option value="{{assignee.pk}}">{{ assignee.username }}</option>
+                        {% endif %}
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2">
+                    <button type="submit" onclick="update_task('{{instance.project_id}}', '{{instance.pk}}')">Submit</button>
+                </td>
+            </tr>
+
+        </table>
+    </center>
+</div>
+<script src="/static/js/script.js"></script>
+
+{% endblock %}
